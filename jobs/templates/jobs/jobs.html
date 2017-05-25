@@ -1,0 +1,9 @@
+{% extends 'about/header.html' %}
+{% block content %}
+  {% for job in object_list %}
+  <h5><a href= "/jobs/{{job.id}}"> {{job.job_title}}</a>
+    {{job.job_addr}}
+    {{job.comp_name}}
+    {{job.job_posted}}</h5>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "about/header.html" %}
+
+{% block content %}
+
+  <h3><a href= "/jobs/{{jobinfo.id}}">{{ jobinfo.job_title }}</a></h3>
+  <h6> Job Category = {{jobinfo.job_search}} </h6>
+  <div class = "container">
+    {{jobinfo.job_link|safe|linebreaks}}
+  </div>
+  <br><br>
+{% endblock %}
