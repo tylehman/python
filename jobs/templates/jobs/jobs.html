@@ -1,9 +1,45 @@
 {% extends 'about/header.html' %}
 {% block content %}
-  {% for job in object_list %}
-  <h5><a href= "/jobs/{{job.id}}"> {{job.job_title}}</a>
-    {{job.job_addr}}
-    {{job.comp_name}}
-    {{job.job_posted}}</h5>
-  {% endfor %}
+
+<h2> Below are listed the available jobs. Clicking on the Job will bring up a URL.
+</h2>
+<table class='table table-striped' class='table table-bordered'>
+  <tr>
+    <th> Job Title </th>
+    <th> Job Location </th>
+    <th> Company </th>
+    <th> Date Posted </th>
+  </tr>
+  {% for job in jobs %}
+    <tr>
+      <th><a href= "/jobs/{{job.id}}"> {{job.job_title}}</a></th>
+      <th>{{job.job_addr}}</th>
+      <th>{{job.comp_name}}</th>
+      <th>{{job.job_posted}}</th>
+    {% endfor %}
+  </tr>
+</table>
+
+{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
 {% endblock %}
