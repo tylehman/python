@@ -32,13 +32,23 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'about',
     'jobs',
+    'account',
+    'find_job',
+    'user_account',
+    'pinax_theme_bootstrap',
+    'bootstrapform',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'widget_tweaks',
+
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'account.middleware.LocaleMiddleware',
+    'account.middleware.TimezoneMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -55,7 +67,11 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'mysite/templates'),
+                os.path.join(BASE_DIR, 'user_account/templates'),
+                os.path.join(BASE_DIR, 'templates'),
+
+                ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +83,11 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSOR = ['account.context_processors.account',
+                              'django.core.context_processors.request',
+                              'pinax_theme_bootstrap.context_processors.theme',
+                              ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
@@ -115,7 +136,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -124,3 +145,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = 'user_account/login.html'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home1'

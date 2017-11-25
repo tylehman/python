@@ -15,10 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+
+from user_account import views as user_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('about.urls')),
     url(r'^jobs/', include('jobs.urls')),
-
+    url(r'^find_job/', include('find_job.urls')),
+    url(r'^account/', include('account.urls')),
+    url(r'^user_account/', include('user_account.urls')),
+    url(r'^home1/', user_views.home1, name='home1'),
+    url(r'^user_account/login/', auth_views.login, {'template_name' : 'user_account/login.html'} ,name='login'),
+    url(r'^logout/', auth_views.logout, {'next_page' : 'login'}, name='logout'),
 ]

@@ -11,17 +11,14 @@ from django.db import models
 
 
 class JobInfo(models.Model):
-    id = models.IntegerField(primary_key=True, blank=True)
+    id = models.IntegerField(blank=True, primary_key=True)
     job_title = models.CharField(max_length=50, blank=True, null=True)
     comp_name = models.CharField(max_length=50, blank=True, null=True)
     job_addr = models.CharField(max_length=50, blank=True, null=True)
     job_link = models.CharField(max_length=50, blank=True, null=True)
-    job_posted = models.CharField(max_length=50, blank=True, null=True)
+    job_posted = models.DateField(null=True)
     job_search = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'job_info'
-
-    def __str__(self):
-        return self.job_title
