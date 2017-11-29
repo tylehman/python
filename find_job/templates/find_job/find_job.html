@@ -13,8 +13,16 @@
           <form method="get">
             <div class="well" style="background: radial-gradient(circle, rgba(153, 204, 255, 0.5), rgba(75, 232, 238, 0.8))">
               <div class="row>">
-
-                {{ filter.form.as_p }}
+                {% for field in filter.form.visible_fields %}
+                  <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field|add_class:'form-control' }}
+                    {% for error in field.errors %}
+                      <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                {% endfor %}
+                <!-- {{ filter.form.as_p }} -->
                 <button class="orange-w3-theme-d2" type="submit" class="btn btn-primary">
                   <span class="buttonSearch">Search</span>
                 </button>

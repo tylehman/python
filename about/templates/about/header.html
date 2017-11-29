@@ -25,20 +25,19 @@
 <body class="body" style="background: radial-gradient(circle, rgba(14, 125, 147, 0.8), rgba(186, 238, 249, 0.9))">
  <div class="container-fluid" style="min-height:95%; ">
    <div class='jumbotron' style="background-image: url('{% static "about/img/jade.jpg" %}');">
-   <!-- style="background: radial-gradient(circle, rgba(153, 204, 255, 0.5), rgba(75, 232, 238, 0.6))"> -->
    <div class = "row">
      <div class = "col-sm-6">
        <br>
        <center>
          <div class="container">
-           <div class="row">
+           <div class="row" style="text-align: center;">
              {% if user.is_authenticated %}
                 <a class="logs" href="{% url 'logout' %}">Log Out</a>
              {% else %}
-              <div class="col-md-8">
+              <div class="col-md-8 headboard">
                 <a class="logs" href="{% url 'login' %}">Log In</a>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-8 headboard">
                 <a class="logs" href="{% url 'signup' %}">Sign Up!</a>
               </div>
               {% endif %}
