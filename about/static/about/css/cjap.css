@@ -6,6 +6,7 @@ tr:nth-child(2n) {color:#fff !important;background-color:#35ceec !important}
 th:nth-child(n+1) {text-align: center;}
 .buttonSearch {border-radius: 12px;}
 th {font-size: 15px;}
+h1 {color:#fff }
 /* Class Styles */
 .black_font{color: #000;}
 .bolding {text-align: center; font-weight: 900; font-size: 20px; background-color:#13afce;}
@@ -47,3 +48,26 @@ th {font-size: 15px;}
 
 .panel > .panel-heading {background-image: none;background-color:#fce8dc;color:#000;}
 .panel > .panel-body {background-image: none;background-color:#ec7835;color: white;}
+
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.jumbotron{
+  background-size : cover;
+}
+
+.right {
+    right: 0px;
+    width: 300px;
+    padding: 10px;
+}
+
+.logs{
+  font-weight: 900;
+  font-size: 30px;
+}
